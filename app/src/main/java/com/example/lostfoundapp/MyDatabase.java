@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 class MyDatabase extends SQLiteOpenHelper {
 
+    //Declare variables
     private Context context;
     private static final String DATABASE_NAME = "Lostfounditem2.db";
     private static final int DATABASE_VERSION = 1;
@@ -27,7 +28,7 @@ class MyDatabase extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
-
+    //Create table
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
@@ -47,6 +48,7 @@ class MyDatabase extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+    //Additem function
     void additem(String status,String name, String item, String location){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -65,6 +67,7 @@ class MyDatabase extends SQLiteOpenHelper {
 
     }
 
+    //Get Data from database
     Cursor readAllData(){
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -76,6 +79,7 @@ class MyDatabase extends SQLiteOpenHelper {
         }
         return cursor;
     }
+    //Delete function
     void delete(String row_id){
         SQLiteDatabase database = this.getWritableDatabase();
         long result = database.delete(TABLE_NAME, "id=?", new String[]{row_id});

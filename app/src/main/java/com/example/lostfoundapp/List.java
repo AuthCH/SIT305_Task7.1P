@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class List extends AppCompatActivity {
 
+    //Declare variables
     RecyclerView recyclerView;
     MyDatabase myDatabase;
     ArrayList<String> id,status,name,item,location;
@@ -23,6 +24,7 @@ public class List extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list2);
 
+        //Match IDs
         recyclerView = findViewById(R.id.recv);
 
         myDatabase = new MyDatabase(getApplicationContext());
@@ -32,14 +34,18 @@ public class List extends AppCompatActivity {
         item = new ArrayList<>();
         location = new ArrayList<>();
 
+
+        //Call ArrayData
         ArrayData();
 
+        //Set adapter and layout
         myAdapter = new MyAdapter(List.this,getApplicationContext(),id,status,name,item,location);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
     }
 
+    //Refesh app after click remove
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -50,6 +56,7 @@ public class List extends AppCompatActivity {
 
     void ArrayData(){
 
+        //Add information to arrays
         Cursor cursor = myDatabase.readAllData();
         if(cursor.getCount() == 0){
             Toast.makeText(this, "", Toast.LENGTH_SHORT).show();

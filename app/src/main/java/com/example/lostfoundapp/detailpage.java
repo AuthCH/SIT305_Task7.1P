@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class detailpage extends AppCompatActivity {
+    //Declare variables
     TextView textstatus,textitem,textname,textlocation;
     String id,status,name,item,location;
     Button delete;
@@ -18,6 +19,7 @@ public class detailpage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailpage);
 
+        //Match IDs
         textstatus = findViewById(R.id.textstatus);
         textitem = findViewById(R.id.textitem);
         textname = findViewById(R.id.textname);
@@ -25,6 +27,7 @@ public class detailpage extends AppCompatActivity {
         delete = findViewById(R.id.removebtn);
         getandsetData();
 
+        //Set on click to delete button
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,6 +38,7 @@ public class detailpage extends AppCompatActivity {
         });
 
     }
+    //Get data and set to textview
     void getandsetData(){
 
         if(getIntent().hasExtra("id") && getIntent().hasExtra("status") &&

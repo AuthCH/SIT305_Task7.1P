@@ -16,13 +16,14 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
+    //Declare variables
     Context context;
     ArrayList id;
     ArrayList name;
     ArrayList item;
     ArrayList status;
     Activity activity;
-
+    ArrayList location;
 
     public MyAdapter(Activity activity,Context context, ArrayList id,ArrayList status, ArrayList name, ArrayList item, ArrayList location) {
         this.activity = activity;
@@ -34,9 +35,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         this.location = location;
     }
 
-    ArrayList location;
+
     @NonNull
     @Override
+    //Set recyclerview layout
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recvlayout,parent,false);
@@ -47,10 +49,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-
+        //Set text in recyclerview
         holder.status.setText(String.valueOf(status.get(position)));
         holder.disitem.setText(String.valueOf(item.get(position)));
+        //Set on click for recyclerview
         holder.mainlayout.setOnClickListener(new View.OnClickListener() {
+            //Go to detail page and pass information
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, detailpage.class);
@@ -71,11 +75,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        //Declare variables
         TextView disitem,status;
         LinearLayout mainlayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            //Match IDs
             status = itemView.findViewById(R.id.disstatus);
             disitem = itemView.findViewById(R.id.disitem);
             mainlayout = itemView.findViewById(R.id.recvlayout);

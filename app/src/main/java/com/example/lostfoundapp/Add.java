@@ -15,6 +15,7 @@ import org.w3c.dom.Text;
 
 public class Add extends AppCompatActivity {
 
+    //Declare variables
     EditText nameinput, iteminput, locationinput;
     String status = "";
     private RadioGroup radioGroup;
@@ -26,11 +27,13 @@ public class Add extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        //Match IDs
         nameinput = findViewById(R.id.name);
         iteminput = findViewById(R.id.item);
         locationinput = findViewById(R.id.location);
         add = findViewById(R.id.addbtn);
         radioGroup = findViewById(R.id.radioGroup);
+        //Set on click to radio button
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -45,12 +48,11 @@ public class Add extends AppCompatActivity {
             }
         });
 
+        //Set on click to add button
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
+                //Add data to database
                 MyDatabase myDatabase = new MyDatabase(Add.this);
                 myDatabase.additem(status.trim(),
                         nameinput.getText().toString().trim(),
